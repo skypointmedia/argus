@@ -7,7 +7,7 @@ import "@aws-amplify/ui-react/styles.css";
 
 Amplify.configure(outputs);
 
-const Layout = ({ children }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Authenticator>
       {({ signOut, user }) => (
