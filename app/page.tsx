@@ -1,14 +1,10 @@
 "use client";
-
+import Layout from "@/components/Layout";
 import { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
-import "./../app/app.css";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
-import "@aws-amplify/ui-react/styles.css";
-
-import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 
 Amplify.configure(outputs);
@@ -21,6 +17,7 @@ export default function App() {
   function listTodos() {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
+      error: (error) => console.error(error),
     });
   }
 
@@ -33,14 +30,15 @@ export default function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({
-      content: window.prompt("Todo content"),
-    });
+    const content = window.prompt("Todo content");
+    if (content) {
+      client.models.Todo.create({ content });
+    }
   }
 
   return (
-    <Authenticator>
-      {({ signOut, user }) => (
+    <>
+      <Layout>
         <main>
           <h1>My todos</h1>
           <button onClick={createTodo}>+ new</button>
@@ -59,7 +57,7 @@ export default function App() {
             </a>
           </div>
         </main>
-      )}
-    </Authenticator>
+      </Layout>
+    </>
   );
 }
