@@ -1,23 +1,19 @@
 "use client";
-
-import Auth from "@/app/Auth";
+import Auth from "@/components/Auth";
 import { useState, useEffect } from "react";
 import { generateClient } from "aws-amplify/data";
 import type { Schema } from "@/amplify/data/resource";
 import { Amplify } from "aws-amplify";
 import outputs from "@/amplify_outputs.json";
 import "@aws-amplify/ui-react/styles.css";
-import { ApplicationLayout } from './application-layout'
-import '@/app/globals.css'
+import { ApplicationLayout } from "@/components/ApplicationLayout";
+import "@/app/globals.css";
 
 Amplify.configure(outputs);
 
 const client = generateClient<Schema>();
 
-
 export default function App() {
-  
-
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   function listTodos() {
@@ -45,21 +41,29 @@ export default function App() {
   return (
     <>
       <Auth>
-      <ApplicationLayout>
-        <main>
-          <h1>My todos</h1>
-          <button onClick={createTodo}>+ new</button>
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id} onClick={() => deleteTodo(todo.id)}>
-                {todo.content}
-              </li>
-            ))}
-          </ul>
-       </main>
-       </ApplicationLayout>
+        <ApplicationLayout>
+          <main>
+            <h1 className="text-2xl font-bold mb-4">Networks</h1>
+            <button
+              onClick={createTodo}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            >
+              + network
+            </button>
+            <ul className="list-disc list-inside">
+              {todos.map((todo) => (
+                <li
+                  key={todo.id}
+                  onClick={() => deleteTodo(todo.id)}
+                  className="mb-2 cursor-pointer hover:text-red-500"
+                >
+                  {todo.content}
+                </li>
+              ))}
+            </ul>
+          </main>
+        </ApplicationLayout>
       </Auth>
-      
     </>
   );
 }

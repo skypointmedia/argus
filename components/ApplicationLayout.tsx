@@ -92,7 +92,7 @@ export function ApplicationLayout({ children,}: {
             <Dropdown>
               <DropdownButton as={SidebarItem}>
                 <Avatar src="/teams/catalyst.svg" />
-                <SidebarLabel>Catalyst</SidebarLabel>
+                <SidebarLabel>Argus IDS</SidebarLabel>
                 <ChevronDownIcon />
               </DropdownButton>
               <DropdownMenu className="min-w-80 lg:min-w-64" anchor="bottom start">
@@ -101,7 +101,7 @@ export function ApplicationLayout({ children,}: {
                   <DropdownLabel>Settings</DropdownLabel>
                 </DropdownItem>
                 <DropdownDivider />
-                <DropdownItem href="#">
+                {/* <DropdownItem href="#">
                   <Avatar slot="icon" src="/teams/catalyst.svg" />
                   <DropdownLabel>Catalyst</DropdownLabel>
                 </DropdownItem>
@@ -113,7 +113,7 @@ export function ApplicationLayout({ children,}: {
                 <DropdownItem href="#">
                   <PlusIcon />
                   <DropdownLabel>New team&hellip;</DropdownLabel>
-                </DropdownItem>
+                </DropdownItem> */}
               </DropdownMenu>
             </Dropdown>
           </SidebarHeader>
@@ -122,16 +122,16 @@ export function ApplicationLayout({ children,}: {
             <SidebarSection>
               <SidebarItem href="/" current={pathname === '/'}>
                 <HomeIcon />
-                <SidebarLabel>Home</SidebarLabel>
+                <SidebarLabel>Dashboard</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="/orders" current={pathname.startsWith('/orders')}>
+              {/* <SidebarItem href="/orders" current={pathname.startsWith('/orders')}>
                 <TicketIcon />
                 <SidebarLabel>Orders</SidebarLabel>
               </SidebarItem>
               <SidebarItem href="/settings" current={pathname.startsWith('/settings')}>
                 <Cog6ToothIcon />
                 <SidebarLabel>Settings</SidebarLabel>
-              </SidebarItem>
+              </SidebarItem> */}
             </SidebarSection>
 
             <SidebarSpacer />
@@ -141,10 +141,10 @@ export function ApplicationLayout({ children,}: {
                 <QuestionMarkCircleIcon />
                 <SidebarLabel>Support</SidebarLabel>
               </SidebarItem>
-              <SidebarItem href="#">
+              {/* <SidebarItem href="#">
                 <SparklesIcon />
                 <SidebarLabel>Changelog</SidebarLabel>
-              </SidebarItem>
+              </SidebarItem> */}
             </SidebarSection>
           </SidebarBody>
 
